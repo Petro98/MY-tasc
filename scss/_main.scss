@@ -1,0 +1,124 @@
+main{
+   height: 100vh;
+	background-color: rgb(255, 255, 255);
+	max-width: 75vw;
+	margin: 0 auto;
+	padding-top: 7vh;
+	position: relative;
+	.bt{
+		// position: absolute;
+		background-color: rgba(216, 191, 216, 0);
+		margin: 5px;
+		img{
+		background-color: rgb(255, 255, 255);
+			width: 50px;
+			border-radius: 50%;
+		}
+		:hover{
+			   transform: rotate(20deg);
+				transition: 0.2s ease-out;
+		}
+		:active{
+			transform: scale(1.1);
+			transition: 0.1s ease-in;
+		}
+	}
+
+
+	.main_block{
+		margin-top: -15px;
+		.block_forms{
+			max-width: 700px;
+			margin: 0 auto;
+			padding: 12px 25px;
+			border: 1.5px solid thistle;
+			box-shadow: 0 0 10px grey;
+			border-radius: 30px;
+			.forms_button{
+				margin-right: 10px;
+				img{
+					background-color: rgb(255, 255, 255);
+					width: 30px;
+				}
+				:hover{
+					transform: scale(1.2);
+					transition-duration: 0.1s ;
+				}
+				
+			}
+			display: flex;
+			justify-content: center;
+			margin-top: 20px;
+			.forms_time{
+				margin: 0 10px;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				width: 200px;
+				border-bottom: 3px solid rgb(0, 0, 0);
+				img{
+					width: 25px;
+				}
+				input{
+					width: 100%;
+					text-align: end;
+					font-size: 20px;
+					padding: 0 8px;
+					transition: 0.7s ease-out;
+				}
+				:focus{
+					background-color: rgba(228, 207, 228, 0.466);
+					border-radius: 50px;
+					border-bottom: 2px solid rgb(255, 0, 255);
+					transition: 0.2s ease-in;
+				}
+				[required] {
+					color:rgb(255, 0, 242);
+					z-index: 100;
+			  }
+				
+			}
+			.checkbox{
+				display: flex;
+				position: relative;
+				.container{
+					.checkmark4{
+						background-color: rgb(8, 255, 29);
+					}
+				}
+				
+			}
+			
+		}
+	}
+	.bt2{
+		button{
+			background-color: rgba(255, 255, 255, 0);
+			img{
+				width: 70px;
+				background-color: rgb(255, 255, 255);
+				border-radius: 50%;
+			}
+			:hover{
+				transform: scale(1.1);
+				box-shadow: 0 0 10px rgb(0, 0, 0);
+				transition: 0.2s ease-in;
+			}
+			:active{
+				transform: scale(1);
+				box-shadow: 0 0 10px rgb(0, 131, 7);
+				transition: 0.1s ease-in;
+				background-color: rgba(0, 131, 11, 0.486);
+			}
+			transition: 0.2s ease-in;
+		// 	font-size: 25px;
+		// padding: 12px 66px;
+		// background-color: rgb(245, 193, 22);
+		// border-radius: 10px;
+	   position: absolute;
+		left: 50%;
+	   bottom: 10px;
+		transform: translate(-50%,0);
+		}
+	}
+}

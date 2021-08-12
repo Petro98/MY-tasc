@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import 'default_style';
+@import 'header';
+@import 'main';
+@import 'checkBox';
+
+
+
+body{
+	.block_forms{
+		display: none;
+	}
+}
+.block{
+	background-color: rgb(0, 0, 0);
+}
+ 
