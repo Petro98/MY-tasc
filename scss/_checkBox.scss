@@ -25,7 +25,7 @@
 	padding: 0;
 	transform: scale(0.2);
 }
-.spantest{
+.spantest {
 	font-family: 'Montserrat', sans-serif;
 	width: 94.7%;
 	position: absolute;
@@ -36,7 +36,6 @@
 	font-size: 17px;
 	cursor: default;
 }
-
 
 /* Create a custom checkbox */
 .checkmark {
@@ -57,24 +56,23 @@
 .container:hover input ~ .checkmark {
 	background-color: rgb(207, 180, 207);
 	transition: 0.1s ease-in;
-	
 }
 
 /* When the checkbox is checked, add a blue background */
 .container input:checked ~ .checkmark {
 	background-color: #db21f3;
 }
-.checkmark2{
+.checkmark2 {
 	background-color: rgb(255, 0, 0);
 	transition: 0.2s ease-in;
 }
-.checkmark3{
+.checkmark3 {
 	background-color: rgb(38, 255, 0);
 }
 
 /* Create the checkmark/indicator (hidden when not checked) */
 .checkmark:after {
-	content: "";
+	content: '';
 	position: absolute;
 	display: none;
 }
