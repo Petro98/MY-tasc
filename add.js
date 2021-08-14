@@ -4,9 +4,11 @@ const mainBlock = document.querySelector('.main_block');
 const checkboxRem = document.querySelectorAll('.pers .checkbox .container');
 const checkboxMy = document.querySelectorAll('.my');
 
+
 // очистака
 function rest() {
-	window.location.reload();
+	mainBlock.innerHTML = '';
+	// window.location.reload();
 }
 
 // додавання нових блоків та перевірка на заповнення днів
@@ -91,7 +93,7 @@ function info() {
 		}
 		Worcing_items(oneInput, towInput, arrCheckbox);
 	}
-	console.log(worcing_items);
+	if (worcing_items.length) console.log(worcing_items);
 }
 
 // запис інформації
@@ -156,6 +158,8 @@ function Disabled() {
 					i.children[2].classList.add('checkmark2');
 				}
 			}
+
+
 			if (my.children[1].checked) {
 				my.children[1].disabled = false;
 				for (const i of mystyle) {
@@ -169,13 +173,12 @@ function Disabled() {
 					let dayInitial = i.children[0].textContent.trim();
 					if (day === dayInitial) {
 						i.children[1].disabled = false;
-
-						// false
 						i.children[2].classList.remove('checkmark2');
 					}
 				}
 			} else {
 				setTimeout(() => {
+					
 					for (const i of mystyle) {
 						let dayInitial = i.children[0].textContent.trim();
 						if (day === dayInitial) {
@@ -228,10 +231,10 @@ function validationInput() {
 					i.path[1].children[1].value = '';
 				}
 			} else {
-				error();
+				error('помилка');
 			}
-			function error() {
-				alert('помилка');
+			function error(text) {
+				alert(`${text}`);
 				i.path[1].children[1].value = '';
 			}
 
@@ -244,26 +247,24 @@ function validationInput() {
 				if (!(+valueOne[0] < 3 && +valueOne[3] < 6) && valueOne != 0) {
 					error();
 				} else if (+valueOne[0] == 2 && +valueOne[1] > 3) {
-					error();
+					error('помилка');
 				}
 				if (!(+valueTwo[0] < 3 && +valueTwo[3] < 6) && valueTwo != 0) {
 					error();
 				} else if (+valueTwo[0] == 2 && +valueTwo[1] > 3) {
-					error();
+					error('помилка');
 				}
 
 				let elementOne = inputOne[index].value.split('');
 				let elementTwo = inputTwo[index].value.split('');
-
 				elementOne.splice(2, 1);
 				elementTwo.splice(2, 1);
 				elementOne = +elementOne.join('');
 				elementTwo = +elementTwo.join('');
 
-				if (elementTwo > 0) {
+				if (elementTwo > 0 || inputTwo[index].value == '00:00') {
 					if (elementTwo <= elementOne) {
-						alert('ведіть більше число');
-						error();
+						error('ведіть більше число');
 					}
 				}
 			}
