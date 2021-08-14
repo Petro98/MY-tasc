@@ -155,7 +155,6 @@ function Disabled() {
 					i.children[2].classList.add('checkmark2');
 				}
 			}
-
 			if (my.children[1].checked) {
 				my.children[1].disabled = false;
 				for (const i of mystyle) {
@@ -172,7 +171,7 @@ function Disabled() {
 						i.children[2].classList.remove('checkmark2');
 					}
 				}
-			} else {
+			} else{
 				setTimeout(() => {
 					for (const i of mystyle) {
 						let dayInitial = i.children[0].textContent.trim();
@@ -183,7 +182,7 @@ function Disabled() {
 							}
 						}
 					}
-				}, 0);
+				}, 2);
 			}
 		}
 	}

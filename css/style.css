@@ -278,7 +278,7 @@ main .main_block .block_forms .checkbox .container {
 }
 
 main .main_block .block_forms .checkbox .container .checkmark4 {
-  background: url("https://image.flaticon.com/icons/png/512/1466/1466599.png") 0 0/100% 100%;
+  background: url("https://image.flaticon.com/icons/png/512/1466/1466599.png") 50%/90% 90% no-repeat;
   background-color: #08ff1d;
 }
 
@@ -382,10 +382,10 @@ main .bt2 button :active {
 }
 
 /* On mouse-over, add a grey background color */
-.container:hover input ~ .checkmark {
+.container:active input ~ .checkmark {
   background-color: #cfb4cf;
-  -webkit-transition: 0.1s ease-in;
-  transition: 0.1s ease-in;
+  -webkit-transition: 0.1s ease;
+  transition: 0.1s ease;
 }
 
 /* When the checkbox is checked, add a blue background */
