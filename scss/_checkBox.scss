@@ -45,8 +45,8 @@
 	height: 22px;
 	width: 22px;
 	background-color: rgb(255, 255, 255);
-	border-radius: 7px;
-	border: 2px solid rgb(0, 0, 0);
+	border-radius: 5px;
+	border: 1.5px solid rgb(0, 0, 0);
 	z-index: 50;
 	transition: 0.1s ease-in;
 	overflow: hidden;
@@ -60,15 +60,13 @@
 
 /* When the checkbox is checked, add a blue background */
 .container input:checked ~ .checkmark {
-	background-color: #db21f3;
+	background-color: #d746eb;
 }
 .checkmark2 {
+	background: url('https://image.flaticon.com/icons/png/512/5275/5275391.png') 50% / 110% 110% no-repeat;
 	background-color: rgb(255, 0, 0);
-	transition: 0.2s ease-in;
 }
-.checkmark3 {
-	background-color: rgb(38, 255, 0);
-}
+
 
 /* Create the checkmark/indicator (hidden when not checked) */
 .checkmark:after {
@@ -84,13 +82,16 @@
 
 /* Style the checkmark/indicator */
 .container .checkmark:after {
-	left: 7.7px;
-	top: 3.5px;
-	width: 6px;
-	height: 13px;
+	left: 6px;
+	top: 1px;
+	width: 7px;
+	height: 16px;
 	border: solid #000;
-	border-width: 0 3px 3px 0;
+	border-width: 0 2px 3px 0;
+	border-radius: 50%;
+	border-top-right-radius:0;
+	border-bottom-left-radius: 0;
 	-webkit-transform: rotate(45deg);
 	-ms-transform: rotate(45deg);
-	transform: rotate(45deg);
+	transform: rotate(40deg);
 }

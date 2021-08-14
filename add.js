@@ -4,7 +4,6 @@ const mainBlock = document.querySelector('.main_block');
 const checkboxRem = document.querySelectorAll('.pers .checkbox .container');
 const checkboxMy = document.querySelectorAll('.my');
 
-
 // очистака
 function rest() {
 	mainBlock.innerHTML = '';
@@ -30,7 +29,6 @@ formsButton.addEventListener('click', () => {
 			}
 		}
 		let tr = dayInitial.filter(i => i === true);
-
 		if (blockFormss.length < 7 && dayInitial.length < 7 && tr[0] === true) {
 			if (res) {
 				FormsAdd();
@@ -49,7 +47,6 @@ FormsAdd();
 function FormsAdd() {
 	const clon = blockForms.cloneNode(true);
 	mainBlock.append(clon);
-
 	substitute(clon);
 	validationInput();
 }
@@ -159,7 +156,6 @@ function Disabled() {
 				}
 			}
 
-
 			if (my.children[1].checked) {
 				my.children[1].disabled = false;
 				for (const i of mystyle) {
@@ -178,7 +174,6 @@ function Disabled() {
 				}
 			} else {
 				setTimeout(() => {
-					
 					for (const i of mystyle) {
 						let dayInitial = i.children[0].textContent.trim();
 						if (day === dayInitial) {

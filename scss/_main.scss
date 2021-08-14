@@ -15,6 +15,7 @@ main {
 			border-radius: 50%;
 		}
 		:hover {
+			background-color: rgba(34, 148, 5, 0.815);
 			transform: rotate(20deg);
 			transition: 0.2s ease-out;
 		}
@@ -35,11 +36,13 @@ main {
 			border-radius: 30px;
 			.forms_button {
 				margin-right: 10px;
+				background-color: rgb(255, 255, 255);
 				img {
-					background-color: rgb(255, 255, 255);
 					width: 30px;
+					border-radius: 50%;
 				}
 				:hover {
+					background-color: rgb(255, 0, 0);
 					transform: scale(1.2);
 					transition-duration: 0.1s;
 				}
@@ -79,7 +82,10 @@ main {
 				display: flex;
 				position: relative;
 				.container {
+					transition: 0.1s ease;
 					.checkmark4 {
+						background: url('https://image.flaticon.com/icons/png/512/1466/1466599.png')
+							0 0 / 100% 100%;
 						background-color: rgb(8, 255, 29);
 					}
 				}
@@ -106,14 +112,11 @@ main {
 				background-color: rgba(0, 131, 11, 0.486);
 			}
 			transition: 0.2s ease-in;
-			// 	font-size: 25px;
-			// padding: 12px 66px;
-			// background-color: rgb(245, 193, 22);
-			// border-radius: 10px;
 			position: absolute;
 			left: 50%;
 			bottom: 10px;
 			transform: translate(-50%, 0);
+			cursor: alias;
 		}
 	}
 }
