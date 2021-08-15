@@ -194,8 +194,6 @@ main .main_block .block_forms {
   margin: 0 auto;
   padding: 12px 25px;
   border: 1.5px solid thistle;
-  -webkit-box-shadow: 0 0 10px grey;
-          box-shadow: 0 0 10px grey;
   border-radius: 30px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -262,6 +260,7 @@ main .main_block .block_forms .forms_time :focus {
 
 main .main_block .block_forms .forms_time [required] {
   color: #ff00f2;
+  opacity: 1;
   z-index: 100;
 }
 

@@ -4,10 +4,49 @@ const mainBlock = document.querySelector('.main_block');
 const checkboxRem = document.querySelectorAll('.pers .checkbox .container');
 const checkboxMy = document.querySelectorAll('.my');
 
+const colors = [
+	'#e9c46a',
+	'#2a9d8f',
+	'#e76f51',
+	'#264653',
+	'#0077b6',
+	'#ffc300',
+	'#000814',
+	'#264653',
+	'#d00000',
+	'#deaaff',
+	'#283618',
+	'#c0fdff',
+	'#d1b3c4',
+	'#aacc00',
+];
+let colorsRandom;
+
+// hex To RgbA
+function hexToRgbA(hex) {
+	var c;
+	
+	if (/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)) {
+		c = hex.substring(1).split('');
+		if (c.length == 3) {
+			c = [c[0], c[0], c[1], c[1], c[2], c[2]];
+		}
+		c = '0x' + c.join('');
+		return (
+			'rgba(' + [(c >> 16) & 255, (c >> 8) & 255, c & 255].join(',') + ',1)'
+		);
+	}else{
+		console.log(hex);
+		return 'rgba(228, 207, 228, 0.466)'
+	}
+	
+	throw new Error('Bad Hex');
+}
+
 // очистака
 function rest() {
 	mainBlock.innerHTML = '';
-	// window.location.reload();
+	window.location.reload();
 }
 
 // додавання нових блоків та перевірка на заповнення днів
@@ -51,11 +90,31 @@ function FormsAdd() {
 	validationInput();
 }
 
+// рандом коляру
+function getRandomColor() {
+	const index = Math.floor(Math.random() * colors.length - 1);
+	return colors[index];
+}
 // редагування копійованого блока
 function substitute(clon) {
 	clon.querySelector('.forms_button').classList.add('mystyle');
 	clon.classList.remove('pers');
 	clon.classList.add('my');
+
+	const color = getRandomColor();
+	colorsRandom = color;
+	clon.style.boxShadow = `0px 0px 8px ${color}`;
+
+	formsButton.addEventListener('mouseover', function () {
+		this.children[0].style.backgroundColor = colorsRandom
+	});
+	formsButton.addEventListener('click', function () {
+		this.children[0].style.backgroundColor = colorsRandom
+	});
+
+   formsButton.addEventListener('mouseout', function () {
+		this.children[0].style.backgroundColor = '#fff'
+	});
 	remove();
 	Disabled();
 }
@@ -171,7 +230,7 @@ function Disabled() {
 						i.children[2].classList.remove('checkmark2');
 					}
 				}
-			} else{
+			} else {
 				setTimeout(() => {
 					for (const i of mystyle) {
 						let dayInitial = i.children[0].textContent.trim();
@@ -192,6 +251,8 @@ function validationInput() {
 	const val = document.querySelectorAll('main .main_block .forms_time input');
 	for (const i of val) {
 		i.addEventListener('blur', i => {
+			i.path[1].children[1].style.backgroundColor = '#fff';
+
 			let value = i.path[1].children[1].value;
 			let a = value.split('');
 			let b = a.filter(i => {
@@ -239,7 +300,7 @@ function validationInput() {
 				let valueTwo = inputTwo[index].value;
 
 				if (!(+valueOne[0] < 3 && +valueOne[3] < 6) && valueOne != 0) {
-					error();
+					error('помилка');
 				} else if (+valueOne[0] == 2 && +valueOne[1] > 3) {
 					error('помилка');
 				}
@@ -264,6 +325,10 @@ function validationInput() {
 			}
 		});
 		i.addEventListener('focus', i => {
+			let colorsRandomRgbA = hexToRgbA(colorsRandom).split('');
+			colorsRandomRgbA.splice(-2, 1, '0.25');
+			i.path[1].children[1].style.backgroundColor = colorsRandomRgbA.join('');
+
 			setTimeout(() => {
 				i.path[1].children[1].value = '';
 			}, 5);

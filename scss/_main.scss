@@ -32,7 +32,7 @@ main {
 			margin: 0 auto;
 			padding: 12px 25px;
 			border: 1.5px solid thistle;
-			box-shadow: 0 0 10px grey;
+			// box-shadow: 0 0 10px grey;
 			border-radius: 30px;
 			.forms_button {
 				margin-right: 10px;
@@ -75,6 +75,7 @@ main {
 				}
 				[required] {
 					color: rgb(255, 0, 242);
+					opacity: 1;
 					z-index: 100;
 				}
 			}
