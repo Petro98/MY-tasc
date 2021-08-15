@@ -49,13 +49,32 @@ function rest() {
 formsButton.addEventListener('click', () => {
 	const blockFormss = document.querySelectorAll('.main_block .block_forms');
 	const block = document.querySelectorAll('.main_block .forms_time');
+	let arrayChek1 = [];
+
+	for (const i of blockFormss) {
+		let arrayChek = i.children[4].children;
+		let arr = [];
+		for (let index = 0; index < arrayChek.length - 1; index++) {
+			const element = arrayChek[index].children[1].checked;
+			if (element === true) {
+				arrayChek1.push(element);
+			} else {
+				arr.push(false);
+			}
+		}
+		if (arr.length === 7) {
+			arrayChek1.push(false);
+		}
+	}
+	let checkedChec = arrayChek1.filter(i => i === false).length;
+
 	let res = true;
 	block.forEach(i => {
 		if (i.children[1].value === '') res = false;
 	});
-	if (blockFormss.length === 0) {
+	if (blockFormss.length === 0 || checkedChec === 0) {
 		FormsAdd();
-	} else {
+	} else if (checkedChec === 0) {
 		let lastItem = blockFormss[blockFormss.length - 1].children[4].children;
 		let dayInitial = [];
 		for (const i of lastItem) {
@@ -75,6 +94,8 @@ formsButton.addEventListener('click', () => {
 		} else {
 			alert('В тижні тільки 7 днів!!!');
 		}
+	} else {
+		alert('оберіть день');
 	}
 });
 FormsAdd();
@@ -90,7 +111,7 @@ function FormsAdd() {
 function getRandomColor() {
 	const index = Math.floor(Math.random() * colors.length - 1);
 	if (index == -1) {
-		index = 0;
+		return colors[0];
 	}
 	return colors[index];
 }
@@ -323,6 +344,7 @@ function validationInput() {
 				}
 			}
 		});
+
 		i.addEventListener('focus', i => {
 			let colorsRandomRgbA = hexToRgbA(colorsRandom).split('');
 			colorsRandomRgbA.splice(-2, 1, '0.25');
