@@ -5,7 +5,6 @@ const checkboxRem = document.querySelectorAll('.pers .checkbox .container');
 const checkboxMy = document.querySelectorAll('.my');
 
 const colors = [
-	'#e9c46a',
 	'#2a9d8f',
 	'#e76f51',
 	'#264653',
@@ -16,9 +15,15 @@ const colors = [
 	'#d00000',
 	'#deaaff',
 	'#283618',
-	'#c0fdff',
-	'#d1b3c4',
 	'#aacc00',
+	'#3f37c9',
+	'#7f5539',
+	'#277da1',
+	'#fca311',
+	'#f08080',
+	'#718355',
+	'#4d194d',
+	'#89b0ae',
 ];
 let colorsRandom;
 
@@ -121,9 +126,13 @@ function substitute(clon) {
 	clon.classList.remove('pers');
 	clon.classList.add('my');
 
-	const color = getRandomColor();
+	let color = getRandomColor();
+	if (color === colorsRandom ) {
+		color = getRandomColor()
+	}
 	colorsRandom = color;
-	clon.style.boxShadow = `0px 0px 8px ${color}`;
+
+	clon.style.boxShadow = `0px 0px 17px ${color}`;
 
 	formsButton.addEventListener('mouseover', function () {
 		this.children[0].style.backgroundColor = colorsRandom;
