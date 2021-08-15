@@ -25,7 +25,6 @@ let colorsRandom;
 // hex To RgbA
 function hexToRgbA(hex) {
 	var c;
-	
 	if (/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)) {
 		c = hex.substring(1).split('');
 		if (c.length == 3) {
@@ -35,12 +34,9 @@ function hexToRgbA(hex) {
 		return (
 			'rgba(' + [(c >> 16) & 255, (c >> 8) & 255, c & 255].join(',') + ',1)'
 		);
-	}else{
-		console.log(hex);
-		return 'rgba(228, 207, 228, 0.466)'
+	} else {
+		return 'rgba(228, 207, 228, 0.466)';
 	}
-	
-	throw new Error('Bad Hex');
 }
 
 // очистака
@@ -93,6 +89,9 @@ function FormsAdd() {
 // рандом коляру
 function getRandomColor() {
 	const index = Math.floor(Math.random() * colors.length - 1);
+	if (index == -1) {
+		index = 0;
+	}
 	return colors[index];
 }
 // редагування копійованого блока
@@ -106,14 +105,14 @@ function substitute(clon) {
 	clon.style.boxShadow = `0px 0px 8px ${color}`;
 
 	formsButton.addEventListener('mouseover', function () {
-		this.children[0].style.backgroundColor = colorsRandom
+		this.children[0].style.backgroundColor = colorsRandom;
 	});
 	formsButton.addEventListener('click', function () {
-		this.children[0].style.backgroundColor = colorsRandom
+		this.children[0].style.backgroundColor = colorsRandom;
 	});
 
-   formsButton.addEventListener('mouseout', function () {
-		this.children[0].style.backgroundColor = '#fff'
+	formsButton.addEventListener('mouseout', function () {
+		this.children[0].style.backgroundColor = '#fff';
 	});
 	remove();
 	Disabled();
