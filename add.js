@@ -77,9 +77,9 @@ formsButton.addEventListener('click', () => {
 	block.forEach(i => {
 		if (i.children[1].value === '') res = false;
 	});
-	if (blockFormss.length === 0 || checkedChec === 0) {
+	if (blockFormss.length === 0 && checkedChec === 0) {
 		FormsAdd();
-	} else if (checkedChec === 0) {
+	} else {
 		let lastItem = blockFormss[blockFormss.length - 1].children[4].children;
 		let dayInitial = [];
 		for (const i of lastItem) {
@@ -89,18 +89,16 @@ formsButton.addEventListener('click', () => {
 		}
 		let tr = dayInitial.filter(i => i === true);
 		if (blockFormss.length < 7 && dayInitial.length < 7 && tr[0] === true) {
-			if (res) {
+			if (res && checkedChec === 0) {
 				FormsAdd();
 			} else {
-				alert('заповніть input');
+				alert('не заповнене поле');
 			}
 		} else if (tr[0] !== true) {
 			alert('оберіть день');
 		} else {
 			alert('В тижні тільки 7 днів!!!');
 		}
-	} else {
-		alert('оберіть день');
 	}
 });
 FormsAdd();
@@ -223,6 +221,7 @@ function Disabled() {
 	const mystyle = document.querySelectorAll('.my .checkbox .container');
 	for (const my of mystyle) {
 		my.children[2].addEventListener('mouseover', function (e) {
+
 			if (my.children[1].disabled === false) {
 				my.children[2].classList.add('checkmark4');
 			}
@@ -277,32 +276,34 @@ function Disabled() {
 }
 
 function validationInput() {
-	const val = document.querySelectorAll('main .main_block .forms_time input');
-	for (const i of val) {
-		i.addEventListener('blur', i => {
-			i.path[1].children[1].style.backgroundColor = '#fff';
+	const input = document.querySelectorAll('main .main_block .forms_time input');
+	for (const i of input) {
+		i.addEventListener('blur', function (i) {
+			this.style.backgroundColor = '#fff';
 
 			let value = i.path[1].children[1].value;
-			let a = value.split('');
-			let b = a.filter(i => {
+			let valueArr = value.split('');
+			let isNaNValue = valueArr.filter(i => {
 				if (!isNaN(i) || i == ':') {
 					return i;
 				} else if (i == ':') {
 					return i;
 				}
 			});
-			let c = a.filter(i => i == ':');
-			let namber = a.filter(i => !isNaN(i));
-			if (a.length === b.length && c.length < 2 && namber.length < 5) {
+
+			let colon = valueArr.filter(i => i == ':');
+			let namber = valueArr.filter(i => !isNaN(i));
+			
+			if (valueArr.length === isNaNValue.length && colon.length < 2 && namber.length < 5) {
 				if (value.length === 1) {
-					i.path[1].children[1].value = `0${value}:00`;
+					this.value = `0${value}:00`;
 				} else if (value.length === 2 && value[1] !== ':' && value[0] !== ':') {
-					i.path[1].children[1].value = `${value}:00`;
+					this.value = `${value}:00`;
 				} else if (value.length === 3) {
 					if (value[1] === ':') {
-						i.path[1].children[1].value = `0${value}0`;
+						this.value = `0${value}0`;
 					} else if (value[2] === ':') {
-						i.path[1].children[1].value = `${value}00`;
+						this.value = `${value}00`;
 					}
 				} else if (
 					value.length === 4 &&
@@ -310,9 +311,9 @@ function validationInput() {
 				) {
 					let res = value.split('');
 					res.splice(2, 0, ':');
-					i.path[1].children[1].value = res.join('');
+					this.value = res.join('');
 				} else if (value === '') {
-					i.path[1].children[1].value = '';
+					this.value = '';
 				}
 			} else {
 				error('помилка');
@@ -334,7 +335,7 @@ function validationInput() {
 					error('помилка');
 				}
 				if (!(+valueTwo[0] < 3 && +valueTwo[3] < 6) && valueTwo != 0) {
-					error();
+					error('помилка');
 				} else if (+valueTwo[0] == 2 && +valueTwo[1] > 3) {
 					error('помилка');
 				}
