@@ -62,7 +62,7 @@ formsButton.addEventListener('click', () => {
 		for (let index = 0; index < arrayChek.length - 1; index++) {
 			const element = arrayChek[index].children[1].checked;
 
-			arrayChek2 = arrayChek[index].parentElement.parentElement
+			arrayChek2 = arrayChek[index].parentElement.parentElement;
 
 			if (element === true) {
 				arrayChek1.push(element);
@@ -72,29 +72,30 @@ formsButton.addEventListener('click', () => {
 		}
 
 		if (arr.length === 7) {
-			checkboxError()
+			checkboxError();
 			arrayChek1.push(false);
 		}
 		// error
-		function checkboxError(){
-			arrayChek2.children[5].style.opacity = 1
+		function checkboxError() {
+			arrayChek2.children[5].style.opacity = 1;
 		}
 	}
 	let checkedChec = arrayChek1.filter(i => i === false).length;
 
-	function checkboxErrorFull(){
-		const blockFormss = document.querySelectorAll('.my' )
-		blockFormss[blockFormss.length -1].children[6].style.opacity = 1
+	function checkboxErrorFull() {
+		const blockFormss = document.querySelectorAll('.my');
+		// Errorr the days are over
+		blockFormss[blockFormss.length - 1].children[6].innerHTML =
+			'Errorr the days are over';
+		blockFormss[blockFormss.length - 1].children[6].style.opacity = 1;
 	}
-	
-	
 
 	let res = true;
 	block.forEach(i => {
-		if (i.children[1].value === ''){
+		if (i.children[1].value === '') {
 			res = false;
 			i.children[2].style.opacity = 1;
-			}
+		}
 	});
 	if (blockFormss.length === 0 && checkedChec === 0) {
 		FormsAdd();
@@ -111,12 +112,11 @@ formsButton.addEventListener('click', () => {
 			if (res && checkedChec === 0) {
 				FormsAdd();
 			}
-		}else if(blockFormss.length > 6 || dayInitial.length > 6) {
-			checkboxErrorFull()
+		} else if (blockFormss.length > 6 || dayInitial.length > 6) {
+			checkboxErrorFull();
 		}
 	}
 });
-
 
 FormsAdd();
 
@@ -196,26 +196,33 @@ function info() {
 
 		Worcing_items(oneInput, towInput, arrCheckbox);
 	}
-	console.log(mainBlockf.length ,worcing_items.length);
+	console.log(mainBlockf.length, worcing_items.length);
 	if (worcing_items.length && worcing_items.length === mainBlockf.length) {
 		console.log(worcing_items);
-}else(alert('Заповність данні'))
-
-// запис інформації
-function Worcing_items(oneInput, towInput, arrCheckbox) {
-
-	obj = {
-		days: arrCheckbox,
-		hours: {
-			time_from: oneInput,
-			time_to: towInput,
-		},
-	};
-	if(arrCheckbox.length !== 0 && oneInput !== '' && towInput !==''){
-worcing_items.push(obj);
 	}
-	
-}
+
+	// запис інформації
+	function Worcing_items(oneInput, towInput, arrCheckbox) {
+		obj = {
+			days: arrCheckbox,
+			hours: {
+				time_from: oneInput,
+				time_to: towInput,
+			},
+		};
+		const blockFormss = document.querySelectorAll('.my');
+		if (arrCheckbox.length !== 0 && oneInput !== '' && towInput !== '') {
+			worcing_items.push(obj);
+		}else if(arrCheckbox.length === 0){
+			blockFormss[blockFormss.length - 1].children[6].innerHTML =
+				'Error select all checkbox';
+			blockFormss[blockFormss.length - 1].children[6].style.opacity = 1;
+		}else if(oneInput === '' && towInput === ''){
+			blockFormss[blockFormss.length - 1].children[6].innerHTML =
+				'Error select all Input';
+			blockFormss[blockFormss.length - 1].children[6].style.opacity = 1;
+		}
+	}
 }
 // редагування Checkbox при видаленні
 function checkboxValidation(item) {
@@ -258,10 +265,10 @@ function Disabled() {
 		});
 		my.children[2].addEventListener('click', name);
 		function name() {
-			this.parentElement.parentElement.parentElement.children[5].style.opacity = 0
-			
-			const blockFormss = document.querySelectorAll('.my' )
-		   blockFormss[blockFormss.length -1].children[6].style.opacity = 0
+			this.parentElement.parentElement.parentElement.children[5].style.opacity = 0;
+
+			const blockFormss = document.querySelectorAll('.my');
+			blockFormss[blockFormss.length - 1].children[6].style.opacity = 0;
 
 			my.children[2].classList.remove('checkmark4');
 			let day = my.children[0].textContent.trim();
@@ -354,8 +361,9 @@ function validationInput() {
 				error();
 			}
 			function error() {
-				i.path[1].children[1].parentElement.children[2].innerHTML = 'Incorrect input'
-            i.path[1].children[1].parentElement.children[2].style.opacity = 1;
+				i.path[1].children[1].parentElement.children[2].innerHTML =
+					'Incorrect input';
+				i.path[1].children[1].parentElement.children[2].style.opacity = 1;
 				i.path[1].children[1].value = '';
 			}
 			const inputOne = document.querySelectorAll('.my .inputOne input');
@@ -385,9 +393,9 @@ function validationInput() {
 
 				if (elementTwo > 0 || inputTwo[index].value == '00:00') {
 					if (elementTwo <= elementOne) {
-            this.parentElement.children[2].innerHTML = 'Enter a larger number'
-            this.parentElement.children[2].style.opacity = 1;
-            this.value = ''
+						this.parentElement.children[2].innerHTML = 'Enter a larger number';
+						this.parentElement.children[2].style.opacity = 1;
+						this.value = '';
 					}
 				}
 			}
@@ -399,11 +407,10 @@ function validationInput() {
 			i.path[1].children[1].style.backgroundColor = colorsRandomRgbA.join('');
 
 			i.path[1].children[2].style.opacity = 0;
-			i.path[1].children[2].innerHTML = 'Errorr equired field'
-         
+			i.path[1].children[2].innerHTML = 'Errorr equired field';
 
-			const blockFormss = document.querySelectorAll('.my' )
-		   blockFormss[blockFormss.length -1].children[6].style.opacity = 0
+			const blockFormss = document.querySelectorAll('.my');
+			blockFormss[blockFormss.length - 1].children[6].style.opacity = 0;
 			setTimeout(() => {
 				i.path[1].children[1].value = '';
 			}, 5);
