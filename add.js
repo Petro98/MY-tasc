@@ -63,8 +63,8 @@ formsButton.addEventListener('click', () => {
 			const element = arrayChek[index].children[1].checked;
 
 			arrayChek2 = arrayChek[index].parentElement.parentElement
+
 			if (element === true) {
-         
 				arrayChek1.push(element);
 			} else {
 				arr.push(false);
@@ -262,6 +262,7 @@ function Disabled() {
 
 			my.children[2].classList.remove('checkmark4');
 			let day = my.children[0].textContent.trim();
+			console.log(day);
 			for (const i of checkboxRem) {
 				let dayInitial = i.children[0].textContent.trim();
 				if (day === dayInitial) {
