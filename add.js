@@ -259,6 +259,9 @@ function Disabled() {
 		my.children[2].addEventListener('click', name);
 		function name() {
 			this.parentElement.parentElement.parentElement.children[5].style.opacity = 0
+			
+			const blockFormss = document.querySelectorAll('.my' )
+		   blockFormss[blockFormss.length -1].children[6].style.opacity = 0
 
 			my.children[2].classList.remove('checkmark4');
 			let day = my.children[0].textContent.trim();
