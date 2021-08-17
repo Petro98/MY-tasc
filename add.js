@@ -46,7 +46,6 @@ function hexToRgbA(hex) {
 
 // очистака
 function rest() {
-	mainBlock.innerHTML = '';
 	window.location.reload();
 }
 
@@ -59,23 +58,43 @@ formsButton.addEventListener('click', () => {
 	for (const i of blockFormss) {
 		let arrayChek = i.children[4].children;
 		let arr = [];
+		let arrayChek2;
 		for (let index = 0; index < arrayChek.length - 1; index++) {
 			const element = arrayChek[index].children[1].checked;
+
+			arrayChek2 = arrayChek[index].parentElement.parentElement
 			if (element === true) {
+         
 				arrayChek1.push(element);
 			} else {
 				arr.push(false);
 			}
 		}
+
 		if (arr.length === 7) {
+			checkboxError()
 			arrayChek1.push(false);
+		}
+		// error
+		function checkboxError(){
+			arrayChek2.children[5].style.opacity = 1
 		}
 	}
 	let checkedChec = arrayChek1.filter(i => i === false).length;
 
+	function checkboxErrorFull(){
+		const blockFormss = document.querySelectorAll('.my' )
+		blockFormss[blockFormss.length -1].children[6].style.opacity = 1
+	}
+	
+	
+
 	let res = true;
 	block.forEach(i => {
-		if (i.children[1].value === '') res = false;
+		if (i.children[1].value === ''){
+			res = false;
+			i.children[2].style.opacity = 1;
+			}
 	});
 	if (blockFormss.length === 0 && checkedChec === 0) {
 		FormsAdd();
@@ -91,17 +110,16 @@ formsButton.addEventListener('click', () => {
 		if (blockFormss.length < 7 && dayInitial.length < 7 && tr[0] === true) {
 			if (res && checkedChec === 0) {
 				FormsAdd();
-			} else {
-				alert('не заповнене поле');
 			}
-		} else if (tr[0] !== true) {
-			alert('оберіть день');
-		} else {
-			alert('В тижні тільки 7 днів!!!');
+		}else if(blockFormss.length > 6 || dayInitial.length > 6) {
+			checkboxErrorFull()
 		}
 	}
 });
+
+
 FormsAdd();
+
 // копіювання блока
 function FormsAdd() {
 	const clon = blockForms.cloneNode(true);
@@ -125,8 +143,8 @@ function substitute(clon) {
 	clon.classList.add('my');
 
 	let color = getRandomColor();
-	if (color === colorsRandom ) {
-		color = getRandomColor()
+	if (color === colorsRandom) {
+		color = getRandomColor();
 	}
 	colorsRandom = color;
 
@@ -149,6 +167,7 @@ function substitute(clon) {
 // видалення блока
 function remove() {
 	const mystyle = document.querySelectorAll('.mystyle');
+
 	for (const my of mystyle) {
 		my.addEventListener('click', item => {
 			item.composedPath()[2].remove();
@@ -174,13 +193,17 @@ function info() {
 				arrCheckbox.push(day);
 			}
 		}
+
 		Worcing_items(oneInput, towInput, arrCheckbox);
 	}
-	if (worcing_items.length) console.log(worcing_items);
-}
+	console.log(mainBlockf.length ,worcing_items.length);
+	if (worcing_items.length && worcing_items.length === mainBlockf.length) {
+		console.log(worcing_items);
+}else(alert('Заповність данні'))
 
 // запис інформації
 function Worcing_items(oneInput, towInput, arrCheckbox) {
+
 	obj = {
 		days: arrCheckbox,
 		hours: {
@@ -188,9 +211,12 @@ function Worcing_items(oneInput, towInput, arrCheckbox) {
 			time_to: towInput,
 		},
 	};
-	worcing_items.push(obj);
+	if(arrCheckbox.length !== 0 && oneInput !== '' && towInput !==''){
+worcing_items.push(obj);
+	}
+	
 }
-
+}
 // редагування Checkbox при видаленні
 function checkboxValidation(item) {
 	const mystyle = document.querySelectorAll('.my .checkbox .container');
@@ -218,10 +244,9 @@ function checkboxValidation(item) {
 
 // валідація Checkbox
 function Disabled() {
-	const mystyle = document.querySelectorAll('.my .checkbox .container');
-	for (const my of mystyle) {
+	const checkbox = document.querySelectorAll('.my .checkbox .container');
+	for (const my of checkbox) {
 		my.children[2].addEventListener('mouseover', function (e) {
-
 			if (my.children[1].disabled === false) {
 				my.children[2].classList.add('checkmark4');
 			}
@@ -233,6 +258,8 @@ function Disabled() {
 		});
 		my.children[2].addEventListener('click', name);
 		function name() {
+			this.parentElement.parentElement.parentElement.children[5].style.opacity = 0
+
 			my.children[2].classList.remove('checkmark4');
 			let day = my.children[0].textContent.trim();
 			for (const i of checkboxRem) {
@@ -244,7 +271,7 @@ function Disabled() {
 			}
 			if (my.children[1].checked) {
 				my.children[1].disabled = false;
-				for (const i of mystyle) {
+				for (const i of checkbox) {
 					let dayInitial = i.children[0].textContent.trim();
 					if (day === dayInitial) {
 						i.children[1].disabled = false;
@@ -260,7 +287,7 @@ function Disabled() {
 				}
 			} else {
 				setTimeout(() => {
-					for (const i of mystyle) {
+					for (const i of checkbox) {
 						let dayInitial = i.children[0].textContent.trim();
 						if (day === dayInitial) {
 							i.children[1].disabled = true;
@@ -269,7 +296,7 @@ function Disabled() {
 							}
 						}
 					}
-				}, 2);
+				});
 			}
 		}
 	}
@@ -293,8 +320,12 @@ function validationInput() {
 
 			let colon = valueArr.filter(i => i == ':');
 			let namber = valueArr.filter(i => !isNaN(i));
-			
-			if (valueArr.length === isNaNValue.length && colon.length < 2 && namber.length < 5) {
+
+			if (
+				valueArr.length === isNaNValue.length &&
+				colon.length < 2 &&
+				namber.length < 5
+			) {
 				if (value.length === 1) {
 					this.value = `0${value}:00`;
 				} else if (value.length === 2 && value[1] !== ':' && value[0] !== ':') {
@@ -313,31 +344,33 @@ function validationInput() {
 					res.splice(2, 0, ':');
 					this.value = res.join('');
 				} else if (value === '') {
+					i.path[1].children[2].style.opacity = 1;
 					this.value = '';
 				}
 			} else {
-				error('помилка');
+				error();
 			}
-			function error(text) {
-				alert(`${text}`);
+			function error() {
+				i.path[1].children[1].parentElement.children[2].innerHTML = 'Incorrect input'
+            i.path[1].children[1].parentElement.children[2].style.opacity = 1;
 				i.path[1].children[1].value = '';
 			}
-
 			const inputOne = document.querySelectorAll('.my .inputOne input');
 			const inputTwo = document.querySelectorAll('.my .inputTwo input');
+
 			for (let index = 0; index < inputOne.length; index++) {
 				let valueOne = inputOne[index].value;
 				let valueTwo = inputTwo[index].value;
 
 				if (!(+valueOne[0] < 3 && +valueOne[3] < 6) && valueOne != 0) {
-					error('помилка');
+					error();
 				} else if (+valueOne[0] == 2 && +valueOne[1] > 3) {
-					error('помилка');
+					error();
 				}
 				if (!(+valueTwo[0] < 3 && +valueTwo[3] < 6) && valueTwo != 0) {
-					error('помилка');
+					error();
 				} else if (+valueTwo[0] == 2 && +valueTwo[1] > 3) {
-					error('помилка');
+					error();
 				}
 
 				let elementOne = inputOne[index].value.split('');
@@ -349,17 +382,25 @@ function validationInput() {
 
 				if (elementTwo > 0 || inputTwo[index].value == '00:00') {
 					if (elementTwo <= elementOne) {
-						error('ведіть більше число');
+            this.parentElement.children[2].innerHTML = 'Enter a larger number'
+            this.parentElement.children[2].style.opacity = 1;
+            this.value = ''
 					}
 				}
 			}
 		});
 
-		i.addEventListener('focus', i => {
+		i.addEventListener('focus', function (i) {
 			let colorsRandomRgbA = hexToRgbA(colorsRandom).split('');
 			colorsRandomRgbA.splice(-2, 1, '0.25');
 			i.path[1].children[1].style.backgroundColor = colorsRandomRgbA.join('');
 
+			i.path[1].children[2].style.opacity = 0;
+			i.path[1].children[2].innerHTML = 'Errorr equired field'
+         
+
+			const blockFormss = document.querySelectorAll('.my' )
+		   blockFormss[blockFormss.length -1].children[6].style.opacity = 0
 			setTimeout(() => {
 				i.path[1].children[1].value = '';
 			}, 5);

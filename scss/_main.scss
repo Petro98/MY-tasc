@@ -27,13 +27,15 @@ main {
 
 	.main_block {
 		margin-top: -15px;
+
 		.block_forms {
+			position: relative;
 			max-width: 700px;
 			margin: 0 auto;
 			padding: 12px 25px;
 			border: 1.5px solid thistle;
-			// box-shadow: 0 0 10px grey;
 			border-radius: 30px;
+
 			.forms_button {
 				margin-right: 10px;
 				background-color: rgb(255, 255, 255);
@@ -50,6 +52,7 @@ main {
 			display: flex;
 			justify-content: center;
 			margin-top: 20px;
+
 			.forms_time {
 				margin: 0 10px;
 				display: flex;
@@ -57,6 +60,19 @@ main {
 				align-items: center;
 				width: 200px;
 				border-bottom: 3px solid rgb(0, 0, 0);
+				.test {
+					position: absolute;
+					top: 44px;
+					z-index: 50;
+					color: rgb(255, 4, 4);
+					font-size: 15px;
+					padding: 7px;
+					background-color: rgba(0, 0, 0, 0.781);
+					border-radius: 20px;
+					border-top-left-radius: 0px;
+					opacity: 0;
+				}
+
 				img {
 					width: 25px;
 				}
@@ -91,13 +107,38 @@ main {
 					}
 				}
 			}
+			.checkboxTest {
+				position: absolute;
+				top: 47px;
+				left: 460px;
+				color: rgb(255, 4, 4);
+				font-size: 15px;
+				padding: 7px;
+				background-color: rgba(0, 0, 0, 0.781);
+				border-radius: 20px;
+				border-top-left-radius: 0px;
+				opacity: 0;
+			}
+			.checkboxTest2 {
+				position: absolute;
+				top: 65px;
+				left: 210px;
+				color: rgb(255, 4, 4);
+				font-size: 18px;
+				padding: 7px;
+				background-color: rgba(0, 0, 0, 0.781);
+				border-radius: 20px;
+				border-top-left-radius: 0px;
+				opacity: 0;
+				text-transform: uppercase;
+			}
 		}
 	}
 	.bt2 {
 		button {
 			background-color: rgba(255, 255, 255, 0);
 			img {
-				width: 70px;
+				width: 50px;
 				background-color: rgb(255, 255, 255);
 				border-radius: 50%;
 			}

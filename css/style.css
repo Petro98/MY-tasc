@@ -190,6 +190,7 @@ main .main_block {
 }
 
 main .main_block .block_forms {
+  position: relative;
   max-width: 700px;
   margin: 0 auto;
   padding: 12px 25px;
@@ -237,6 +238,19 @@ main .main_block .block_forms .forms_time {
   border-bottom: 3px solid black;
 }
 
+main .main_block .block_forms .forms_time .test {
+  position: absolute;
+  top: 44px;
+  z-index: 50;
+  color: #ff0404;
+  font-size: 15px;
+  padding: 7px;
+  background-color: rgba(0, 0, 0, 0.781);
+  border-radius: 20px;
+  border-top-left-radius: 0px;
+  opacity: 0;
+}
+
 main .main_block .block_forms .forms_time img {
   width: 25px;
 }
@@ -281,6 +295,33 @@ main .main_block .block_forms .checkbox .container .checkmark4 {
   background-color: #08ff1d;
 }
 
+main .main_block .block_forms .checkboxTest {
+  position: absolute;
+  top: 47px;
+  left: 460px;
+  color: #ff0404;
+  font-size: 15px;
+  padding: 7px;
+  background-color: rgba(0, 0, 0, 0.781);
+  border-radius: 20px;
+  border-top-left-radius: 0px;
+  opacity: 0;
+}
+
+main .main_block .block_forms .checkboxTest2 {
+  position: absolute;
+  top: 65px;
+  left: 210px;
+  color: #ff0404;
+  font-size: 18px;
+  padding: 7px;
+  background-color: rgba(0, 0, 0, 0.781);
+  border-radius: 20px;
+  border-top-left-radius: 0px;
+  opacity: 0;
+  text-transform: uppercase;
+}
+
 main .bt2 button {
   background-color: rgba(255, 255, 255, 0);
   -webkit-transition: 0.2s ease-in;
@@ -294,7 +335,7 @@ main .bt2 button {
 }
 
 main .bt2 button img {
-  width: 70px;
+  width: 50px;
   background-color: white;
   border-radius: 50%;
 }
