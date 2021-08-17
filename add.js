@@ -262,7 +262,6 @@ function Disabled() {
 
 			my.children[2].classList.remove('checkmark4');
 			let day = my.children[0].textContent.trim();
-			console.log(day);
 			for (const i of checkboxRem) {
 				let dayInitial = i.children[0].textContent.trim();
 				if (day === dayInitial) {
