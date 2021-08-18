@@ -53,34 +53,6 @@ function rest() {
 formsButton.addEventListener('click', () => {
 	const blockFormss = document.querySelectorAll('.main_block .block_forms');
 	const block = document.querySelectorAll('.main_block .forms_time');
-	let arrayChek1 = [];
-
-	for (const i of blockFormss) {
-		let arrayChek = i.children[4].children;
-		let arr = [];
-		let arrayChek2;
-		for (let index = 0; index < arrayChek.length - 1; index++) {
-			const element = arrayChek[index].children[1].checked;
-
-			arrayChek2 = arrayChek[index].parentElement.parentElement;
-
-			if (element === true) {
-				arrayChek1.push(element);
-			} else {
-				arr.push(false);
-			}
-		}
-
-		if (arr.length === 7) {
-			checkboxError();
-			arrayChek1.push(false);
-		}
-		// error
-		function checkboxError() {
-			arrayChek2.children[5].style.opacity = 1;
-		}
-	}
-	let checkedChec = arrayChek1.filter(i => i === false).length;
 
 	function checkboxErrorFull() {
 		const blockFormss = document.querySelectorAll('.my');
@@ -97,7 +69,7 @@ formsButton.addEventListener('click', () => {
 			i.children[2].style.opacity = 1;
 		}
 	});
-	if (blockFormss.length === 0 && checkedChec === 0) {
+	if (blockFormss.length === 0 && valCek() === 0) {
 		FormsAdd();
 	} else {
 		let lastItem = blockFormss[blockFormss.length - 1].children[4].children;
@@ -109,7 +81,7 @@ formsButton.addEventListener('click', () => {
 		}
 		let tr = dayInitial.filter(i => i === true);
 		if (blockFormss.length < 7 && dayInitial.length < 7 && tr[0] === true) {
-			if (res && checkedChec === 0) {
+			if (res && valCek() === 0) {
 				FormsAdd();
 			}
 		} else if (blockFormss.length > 6 || dayInitial.length > 6) {
@@ -119,7 +91,28 @@ formsButton.addEventListener('click', () => {
 });
 
 FormsAdd();
+// перевірка на вибраний чек в
+function valCek() {
+	const blockFormss = document.querySelectorAll('.main_block .block_forms');
+	let arrayChek1 = [];
+	for (const i of blockFormss) {
+		let arrayChek = i.children[4].children;
+		let arr = [];
+		let arrayChek2;
+		for (let index = 0; index < arrayChek.length - 1; index++) {
+			const element = arrayChek[index].children[1].checked;
+			arrayChek2 = arrayChek[index].parentElement.parentElement;
+			(element === true) ? arrayChek1.push(element) : arr.push(false);
+		}
 
+		if (arr.length === 7) {
+			arrayChek2.children[5].style.opacity = 1;
+			arrayChek1.push(false);
+		}
+	}
+	let checkedChec = arrayChek1.filter(i => i === false).length;
+	return checkedChec;
+}
 // копіювання блока
 function FormsAdd() {
 	const clon = blockForms.cloneNode(true);
@@ -183,8 +176,8 @@ function info() {
 	worcing_items = [];
 	const mainBlockf = document.querySelectorAll('.main_block .block_forms');
 	for (const key of mainBlockf) {
-		let oneInput = key.children[1].children[1].value;
-		let towInput = key.children[3].children[1].value;
+		let oneInput = key.children[1].children[1];
+		let towInput = key.children[3].children[1];
 		let checkbox = key.children[4].children;
 		const arrCheckbox = [];
 		for (const i of checkbox) {
@@ -196,7 +189,6 @@ function info() {
 
 		Worcing_items(oneInput, towInput, arrCheckbox);
 	}
-	console.log(mainBlockf.length, worcing_items.length);
 	if (worcing_items.length && worcing_items.length === mainBlockf.length) {
 		console.log(worcing_items);
 	}
@@ -206,20 +198,33 @@ function info() {
 		obj = {
 			days: arrCheckbox,
 			hours: {
-				time_from: oneInput,
-				time_to: towInput,
+				time_from: oneInput.value,
+				time_to: towInput.value,
 			},
 		};
-		const blockFormss = document.querySelectorAll('.my');
-		if (arrCheckbox.length !== 0 && oneInput !== '' && towInput !== '') {
+
+		if (arrCheckbox.length !== 0 && oneInput.value !== '' && towInput.value !== '') {
 			worcing_items.push(obj);
-		}else if(arrCheckbox.length === 0){
-			blockFormss[blockFormss.length - 1].children[6].innerHTML =
-				'Error select all checkbox';
-			blockFormss[blockFormss.length - 1].children[6].style.opacity = 1;
-		}else if(oneInput === '' && towInput === ''){
-			blockFormss[blockFormss.length - 1].children[6].innerHTML =
-				'Error select all Input';
+		} else if (valCek() && (oneInput.value === '' || towInput.value === '')) {
+			ErrorAdd('Error select all checkbox and Input');
+			ErrorChildrenInput()
+		} else if (arrCheckbox.length === 0) {
+			ErrorAdd('Error select all checkbox');
+		} else if (oneInput.value === '' || towInput.value === '') {
+			ErrorAdd('Error select all Input');
+			ErrorChildrenInput()
+		}
+		function ErrorChildrenInput(){
+			if(oneInput.value === ''){
+				oneInput.parentElement.children[2].style.opacity = 1
+			}
+			if(towInput.value === ''){
+				towInput.parentElement.children[2].style.opacity = 1
+			}
+		}
+		function ErrorAdd(text) {
+			const blockFormss = document.querySelectorAll('.my');
+			blockFormss[blockFormss.length - 1].children[6].innerHTML = text;
 			blockFormss[blockFormss.length - 1].children[6].style.opacity = 1;
 		}
 	}

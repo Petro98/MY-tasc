@@ -71,6 +71,7 @@ main {
 					border-radius: 20px;
 					border-top-left-radius: 0px;
 					opacity: 0;
+					transition: 0.3s ease-in;
 				}
 
 				img {
@@ -118,11 +119,13 @@ main {
 				border-radius: 20px;
 				border-top-left-radius: 0px;
 				opacity: 0;
+				transition: 0.2s ease-in;
 			}
 			.checkboxTest2 {
 				position: absolute;
 				top: 75px;
-				left: 210px;
+				left: 50%;
+				transform: translate(-50%, 0);
 				color: rgb(255, 4, 4);
 				font-size: 18px;
 				padding: 7px;
@@ -131,6 +134,8 @@ main {
 				border-top-left-radius: 0px;
 				opacity: 0;
 				text-transform: uppercase;
+				transition: 0.2s ease-in;
+
 			}
 		}
 	}

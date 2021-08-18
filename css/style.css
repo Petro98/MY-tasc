@@ -249,6 +249,8 @@ main .main_block .block_forms .forms_time .test {
   border-radius: 20px;
   border-top-left-radius: 0px;
   opacity: 0;
+  -webkit-transition: 0.3s ease-in;
+  transition: 0.3s ease-in;
 }
 
 main .main_block .block_forms .forms_time img {
@@ -306,12 +308,16 @@ main .main_block .block_forms .checkboxTest {
   border-radius: 20px;
   border-top-left-radius: 0px;
   opacity: 0;
+  -webkit-transition: 0.2s ease-in;
+  transition: 0.2s ease-in;
 }
 
 main .main_block .block_forms .checkboxTest2 {
   position: absolute;
   top: 75px;
-  left: 210px;
+  left: 50%;
+  -webkit-transform: translate(-50%, 0);
+          transform: translate(-50%, 0);
   color: #ff0404;
   font-size: 18px;
   padding: 7px;
@@ -320,6 +326,8 @@ main .main_block .block_forms .checkboxTest2 {
   border-top-left-radius: 0px;
   opacity: 0;
   text-transform: uppercase;
+  -webkit-transition: 0.2s ease-in;
+  transition: 0.2s ease-in;
 }
 
 main .bt2 button {
