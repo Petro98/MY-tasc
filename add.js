@@ -49,7 +49,7 @@ function rest() {
 	window.location.reload();
 }
 
-// додавання нових блоків та перевірка на заповнення днів
+// превірка при додаванні блоків
 formsButton.addEventListener('click', () => {
 	const blockFormss = document.querySelectorAll('.main_block .block_forms');
 	const block = document.querySelectorAll('.main_block .forms_time');
@@ -69,7 +69,7 @@ formsButton.addEventListener('click', () => {
 			i.children[2].style.opacity = 1;
 		}
 	});
-	if (blockFormss.length === 0 && valCek() === 0) {
+	if (blockFormss.length === 0 && checkedCheckboxInTheBlock() === 0) {
 		FormsAdd();
 	} else {
 		let lastItem = blockFormss[blockFormss.length - 1].children[4].children;
@@ -81,7 +81,7 @@ formsButton.addEventListener('click', () => {
 		}
 		let tr = dayInitial.filter(i => i === true);
 		if (blockFormss.length < 7 && dayInitial.length < 7 && tr[0] === true) {
-			if (res && valCek() === 0) {
+			if (res && checkedCheckboxInTheBlock() === 0) {
 				FormsAdd();
 			}
 		} else if (blockFormss.length > 6 || dayInitial.length > 6) {
@@ -91,8 +91,8 @@ formsButton.addEventListener('click', () => {
 });
 
 FormsAdd();
-// перевірка на вибраний чек в
-function valCek() {
+// перевірка на вибраний чек в боксі
+function checkedCheckboxInTheBlock() {
 	const blockFormss = document.querySelectorAll('.main_block .block_forms');
 	let arrayChek1 = [];
 	for (const i of blockFormss) {
@@ -102,7 +102,7 @@ function valCek() {
 		for (let index = 0; index < arrayChek.length - 1; index++) {
 			const element = arrayChek[index].children[1].checked;
 			arrayChek2 = arrayChek[index].parentElement.parentElement;
-			(element === true) ? arrayChek1.push(element) : arr.push(false);
+			element === true ? arrayChek1.push(element) : arr.push(false);
 		}
 
 		if (arr.length === 7) {
@@ -113,7 +113,7 @@ function valCek() {
 	let checkedChec = arrayChek1.filter(i => i === false).length;
 	return checkedChec;
 }
-// копіювання блока
+//додавання в main копій блока
 function FormsAdd() {
 	const clon = blockForms.cloneNode(true);
 	mainBlock.append(clon);
@@ -121,7 +121,7 @@ function FormsAdd() {
 	validationInput();
 }
 
-// рандом коляру
+// рандом colors
 function getRandomColor() {
 	const index = Math.floor(Math.random() * colors.length - 1);
 	if (index == -1) {
@@ -202,33 +202,44 @@ function info() {
 				time_to: towInput.value,
 			},
 		};
-
-		if (arrCheckbox.length !== 0 && oneInput.value !== '' && towInput.value !== '') {
+		validationWhileSaving(oneInput, towInput, arrCheckbox);
+		if (
+			arrCheckbox.length !== 0 &&
+			oneInput.value !== '' &&
+			towInput.value !== ''
+		)
 			worcing_items.push(obj);
-		} else if (valCek() && (oneInput.value === '' || towInput.value === '')) {
-			ErrorAdd('Error select all checkbox and Input');
-			ErrorChildrenInput()
-		} else if (arrCheckbox.length === 0) {
-			ErrorAdd('Error select all checkbox');
-		} else if (oneInput.value === '' || towInput.value === '') {
-			ErrorAdd('Error select all Input');
-			ErrorChildrenInput()
-		}
-		function ErrorChildrenInput(){
-			if(oneInput.value === ''){
-				oneInput.parentElement.children[2].style.opacity = 1
-			}
-			if(towInput.value === ''){
-				towInput.parentElement.children[2].style.opacity = 1
-			}
-		}
-		function ErrorAdd(text) {
-			const blockFormss = document.querySelectorAll('.my');
-			blockFormss[blockFormss.length - 1].children[6].innerHTML = text;
-			blockFormss[blockFormss.length - 1].children[6].style.opacity = 1;
-		}
 	}
 }
+// валідація при збиреженні
+function validationWhileSaving(oneInput, towInput, arrCheckbox) {
+	if (
+		checkedCheckboxInTheBlock() &&
+		(oneInput.value === '' || towInput.value === '')
+	) {
+		ErrorAdd('Error select all checkbox and Input');
+		ErrorChildrenInput();
+	} else if (arrCheckbox.length === 0) {
+		ErrorAdd('Error select all checkbox');
+	} else if (oneInput.value === '' || towInput.value === '') {
+		ErrorAdd('Error select all Input');
+		ErrorChildrenInput();
+	}
+	function ErrorChildrenInput() {
+		if (oneInput.value === '') {
+			oneInput.parentElement.children[2].style.opacity = 1;
+		}
+		if (towInput.value === '') {
+			towInput.parentElement.children[2].style.opacity = 1;
+		}
+	}
+	function ErrorAdd(text) {
+		const blockFormss = document.querySelectorAll('.my');
+		blockFormss[blockFormss.length - 1].children[6].innerHTML = text;
+		blockFormss[blockFormss.length - 1].children[6].style.opacity = 1;
+	}
+}
+
 // редагування Checkbox при видаленні
 function checkboxValidation(item) {
 	const mystyle = document.querySelectorAll('.my .checkbox .container');
@@ -268,8 +279,9 @@ function Disabled() {
 				my.children[2].classList.remove('checkmark4');
 			}
 		});
-		my.children[2].addEventListener('click', name);
-		function name() {
+	console.log(my);
+		my.children[2].addEventListener('click', interactionValidationChek);
+		function interactionValidationChek() {
 			this.parentElement.parentElement.parentElement.children[5].style.opacity = 0;
 
 			const blockFormss = document.querySelectorAll('.my');
@@ -407,7 +419,13 @@ function validationInput() {
 		});
 
 		i.addEventListener('focus', function (i) {
-			let colorsRandomRgbA = hexToRgbA(colorsRandom).split('');
+			focusInputStyle(i)
+			setTimeout(() => {
+				i.path[1].children[1].value = '';
+			}, 5);
+		});
+		function focusInputStyle(i){
+				let colorsRandomRgbA = hexToRgbA(colorsRandom).split('');
 			colorsRandomRgbA.splice(-2, 1, '0.25');
 			i.path[1].children[1].style.backgroundColor = colorsRandomRgbA.join('');
 
@@ -416,10 +434,7 @@ function validationInput() {
 
 			const blockFormss = document.querySelectorAll('.my');
 			blockFormss[blockFormss.length - 1].children[6].style.opacity = 0;
-			setTimeout(() => {
-				i.path[1].children[1].value = '';
-			}, 5);
-		});
+			}
 	}
 }
 validationInput();
