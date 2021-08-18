@@ -3,7 +3,6 @@ const formsButton = document.querySelector('.forms_button');
 const mainBlock = document.querySelector('.main_block');
 const checkboxRem = document.querySelectorAll('.pers .checkbox .container');
 const checkboxMy = document.querySelectorAll('.my');
-
 const colors = [
 	'#2a9d8f',
 	'#e76f51',
@@ -56,7 +55,6 @@ formsButton.addEventListener('click', () => {
 
 	function checkboxErrorFull() {
 		const blockFormss = document.querySelectorAll('.my');
-		// Errorr the days are over
 		blockFormss[blockFormss.length - 1].children[6].innerHTML =
 			'Errorr the days are over';
 		blockFormss[blockFormss.length - 1].children[6].style.opacity = 1;
@@ -86,7 +84,7 @@ formsButton.addEventListener('click', () => {
 			}
 		} else if (blockFormss.length > 6 || dayInitial.length > 6) {
 			checkboxErrorFull();
-		}
+		}else{checkedCheckboxInTheBlock()}
 	}
 });
 
@@ -279,7 +277,7 @@ function Disabled() {
 				my.children[2].classList.remove('checkmark4');
 			}
 		});
-	console.log(my);
+
 		my.children[2].addEventListener('click', interactionValidationChek);
 		function interactionValidationChek() {
 			this.parentElement.parentElement.parentElement.children[5].style.opacity = 0;
