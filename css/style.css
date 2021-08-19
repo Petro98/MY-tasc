@@ -91,7 +91,7 @@ header {
   overflow: hidden;
   height: 7vh;
   width: 100%;
-  background-color: #60668b;
+  background-color: #494c5f;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -117,7 +117,7 @@ header .container {
 }
 
 header .container button {
-  background-color: #60668b;
+  background-color: #494c5f;
   margin: 0;
   padding: 0;
   cursor: wait;
@@ -152,7 +152,7 @@ header .container .header-text {
 
 main {
   height: 100vh;
-  background-color: white;
+  background-color: #1b1d1e;
   max-width: 75vw;
   margin: 0 auto;
   padding-top: 7vh;
@@ -168,6 +168,7 @@ main .bt img {
   background-color: white;
   width: 50px;
   border-radius: 50%;
+  border: 1px solid #fff;
 }
 
 main .bt :hover {
@@ -194,8 +195,8 @@ main .main_block .block_forms {
   max-width: 700px;
   margin: 0 auto;
   padding: 12px 25px;
-  border: 1.5px solid thistle;
-  border-radius: 30px;
+  border: 1.5px solid #9c879c;
+  border-radius: 200px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -207,18 +208,21 @@ main .main_block .block_forms {
 
 main .main_block .block_forms .forms_button {
   margin-right: 10px;
-  background-color: white;
+  background-color: #1b1d1e;
 }
 
 main .main_block .block_forms .forms_button img {
+  background-color: white;
   width: 30px;
   border-radius: 50%;
+  border: 1px solid #fff;
 }
 
 main .main_block .block_forms .forms_button :hover {
   background-color: red;
-  -webkit-transform: scale(1.2);
-          transform: scale(1.2);
+  border: 1px solid red;
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
   -webkit-transition-duration: 0.1s;
           transition-duration: 0.1s;
 }
@@ -235,7 +239,7 @@ main .main_block .block_forms .forms_time {
       -ms-flex-align: center;
           align-items: center;
   width: 200px;
-  border-bottom: 3px solid black;
+  border-bottom: 3px solid #8f8f8f;
 }
 
 main .main_block .block_forms .forms_time .test {
@@ -264,18 +268,19 @@ main .main_block .block_forms .forms_time input {
   padding: 0 8px;
   -webkit-transition: 0.7s ease-out;
   transition: 0.7s ease-out;
+  background-color: #1b1d1e;
 }
 
 main .main_block .block_forms .forms_time :focus {
   background-color: rgba(228, 207, 228, 0.466);
   border-radius: 50px;
-  border-bottom: 2px solid magenta;
+  border-bottom: 2px solid #fbfbfb;
   -webkit-transition: 0.2s ease-in;
   transition: 0.2s ease-in;
 }
 
 main .main_block .block_forms .forms_time [required] {
-  color: #ff00f2;
+  color: #fff;
   opacity: 1;
   z-index: 100;
 }
@@ -344,8 +349,9 @@ main .bt2 button {
 
 main .bt2 button img {
   width: 42px;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.945);
   border-radius: 50%;
+  border: 1px solid #fff;
 }
 
 main .bt2 button :hover {
@@ -411,6 +417,7 @@ main .bt2 button :active {
           justify-content: space-between;
   font-size: 17px;
   cursor: default;
+  color: white;
 }
 
 /* Create a custom checkbox */
@@ -420,9 +427,9 @@ main .bt2 button :active {
   left: -1px;
   height: 22px;
   width: 22px;
-  background-color: white;
+  background-color: #1b1d1e;
   border-radius: 5px;
-  border: 1.5px solid black;
+  border: 1.5px solid #8c8273;
   z-index: 50;
   -webkit-transition: 0.1s ease-in;
   transition: 0.1s ease-in;
@@ -438,12 +445,12 @@ main .bt2 button :active {
 
 /* When the checkbox is checked, add a blue background */
 .container input:checked ~ .checkmark {
-  background-color: #d746eb;
+  background-color: #38b000;
 }
 
 .checkmark2 {
   background: url("https://image.flaticon.com/icons/png/512/5275/5275391.png") 50%/110% 110% no-repeat;
-  background-color: red;
+  background-color: #d62828;
 }
 
 /* Create the checkmark/indicator (hidden when not checked) */

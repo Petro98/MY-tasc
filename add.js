@@ -81,10 +81,14 @@ formsButton.addEventListener('click', () => {
 		if (blockFormss.length < 7 && dayInitial.length < 7 && tr[0] === true) {
 			if (res && checkedCheckboxInTheBlock() === 0) {
 				FormsAdd();
+			} else {
+				checkedCheckboxInTheBlock();
 			}
 		} else if (blockFormss.length > 6 || dayInitial.length > 6) {
 			checkboxErrorFull();
-		}else{checkedCheckboxInTheBlock()}
+		} else {
+			checkedCheckboxInTheBlock();
+		}
 	}
 });
 
@@ -100,6 +104,7 @@ function checkedCheckboxInTheBlock() {
 		for (let index = 0; index < arrayChek.length - 1; index++) {
 			const element = arrayChek[index].children[1].checked;
 			arrayChek2 = arrayChek[index].parentElement.parentElement;
+
 			element === true ? arrayChek1.push(element) : arr.push(false);
 		}
 
@@ -190,24 +195,24 @@ function info() {
 	if (worcing_items.length && worcing_items.length === mainBlockf.length) {
 		console.log(worcing_items);
 	}
-
 	// запис інформації
-	function Worcing_items(oneInput, towInput, arrCheckbox) {
-		obj = {
-			days: arrCheckbox,
-			hours: {
-				time_from: oneInput.value,
-				time_to: towInput.value,
-			},
-		};
-		validationWhileSaving(oneInput, towInput, arrCheckbox);
-		if (
-			arrCheckbox.length !== 0 &&
-			oneInput.value !== '' &&
-			towInput.value !== ''
-		)
-			worcing_items.push(obj);
-	}
+}
+//зберігання в масив обєктів
+function Worcing_items(oneInput, towInput, arrCheckbox) {
+	const obj = {
+		days: arrCheckbox,
+		hours: {
+			time_from: oneInput.value,
+			time_to: towInput.value,
+		},
+	};
+	validationWhileSaving(oneInput, towInput, arrCheckbox);
+	if (
+		arrCheckbox.length !== 0 &&
+		oneInput.value !== '' &&
+		towInput.value !== ''
+	)
+		worcing_items.push(obj);
 }
 // валідація при збиреженні
 function validationWhileSaving(oneInput, towInput, arrCheckbox) {
@@ -266,6 +271,7 @@ function checkboxValidation(item) {
 // валідація Checkbox
 function Disabled() {
 	const checkbox = document.querySelectorAll('.my .checkbox .container');
+
 	for (const my of checkbox) {
 		my.children[2].addEventListener('mouseover', function (e) {
 			if (my.children[1].disabled === false) {
@@ -286,6 +292,7 @@ function Disabled() {
 			blockFormss[blockFormss.length - 1].children[6].style.opacity = 0;
 
 			my.children[2].classList.remove('checkmark4');
+
 			let day = my.children[0].textContent.trim();
 			for (const i of checkboxRem) {
 				let dayInitial = i.children[0].textContent.trim();
@@ -294,6 +301,7 @@ function Disabled() {
 					i.children[2].classList.add('checkmark2');
 				}
 			}
+
 			if (my.children[1].checked) {
 				my.children[1].disabled = false;
 				for (const i of checkbox) {
@@ -331,7 +339,9 @@ function validationInput() {
 	const input = document.querySelectorAll('main .main_block .forms_time input');
 	for (const i of input) {
 		i.addEventListener('blur', function (i) {
-			this.style.backgroundColor = '#fff';
+			let colorsRandomRgbA = hexToRgbA(colorsRandom).split('');
+			colorsRandomRgbA.splice(-2, 1, '0');
+			this.style.backgroundColor = colorsRandomRgbA.join('');
 
 			let value = i.path[1].children[1].value;
 			let valueArr = value.split('');
@@ -369,7 +379,6 @@ function validationInput() {
 					res.splice(2, 0, ':');
 					this.value = res.join('');
 				} else if (value === '') {
-					i.path[1].children[2].style.opacity = 1;
 					this.value = '';
 				}
 			} else {
@@ -417,14 +426,14 @@ function validationInput() {
 		});
 
 		i.addEventListener('focus', function (i) {
-			focusInputStyle(i)
+			focusInputStyle(i);
 			setTimeout(() => {
 				i.path[1].children[1].value = '';
 			}, 5);
 		});
-		function focusInputStyle(i){
-				let colorsRandomRgbA = hexToRgbA(colorsRandom).split('');
-			colorsRandomRgbA.splice(-2, 1, '0.25');
+		function focusInputStyle(i) {
+			let colorsRandomRgbA = hexToRgbA(colorsRandom).split('');
+			colorsRandomRgbA.splice(-2, 1, '0.1');
 			i.path[1].children[1].style.backgroundColor = colorsRandomRgbA.join('');
 
 			i.path[1].children[2].style.opacity = 0;
@@ -432,7 +441,7 @@ function validationInput() {
 
 			const blockFormss = document.querySelectorAll('.my');
 			blockFormss[blockFormss.length - 1].children[6].style.opacity = 0;
-			}
+		}
 	}
 }
 validationInput();

@@ -1,6 +1,6 @@
 main {
 	height: 100vh;
-	background-color: rgb(255, 255, 255);
+	background-color: rgb(27, 29, 30);
 	max-width: 75vw;
 	margin: 0 auto;
 	padding-top: 7vh;
@@ -13,6 +13,7 @@ main {
 			background-color: rgb(255, 255, 255);
 			width: 50px;
 			border-radius: 50%;
+			border: 1px solid #fff;
 		}
 		:hover {
 			background-color: rgba(34, 148, 5, 0.815);
@@ -27,25 +28,27 @@ main {
 
 	.main_block {
 		margin-top: -15px;
-
 		.block_forms {
 			position: relative;
 			max-width: 700px;
 			margin: 0 auto;
 			padding: 12px 25px;
-			border: 1.5px solid thistle;
-			border-radius: 30px;
+			border: 1.5px solid rgb(156, 135, 156);
+			border-radius: 200px;
 
 			.forms_button {
 				margin-right: 10px;
-				background-color: rgb(255, 255, 255);
+				background-color: rgb(27, 29, 30);
 				img {
+					background-color: rgb(255, 255, 255);
 					width: 30px;
 					border-radius: 50%;
+					border: 1px solid #fff;
 				}
 				:hover {
 					background-color: rgb(255, 0, 0);
-					transform: scale(1.2);
+					border: 1px solid rgb(255, 0, 0);
+					transform: scale(1.1);
 					transition-duration: 0.1s;
 				}
 			}
@@ -59,7 +62,8 @@ main {
 				justify-content: space-between;
 				align-items: center;
 				width: 200px;
-				border-bottom: 3px solid rgb(0, 0, 0);
+				border-bottom: 3px solid rgb(143, 143, 143);
+				
 				.test {
 					position: absolute;
 					top: 44px;
@@ -83,22 +87,25 @@ main {
 					font-size: 20px;
 					padding: 0 8px;
 					transition: 0.7s ease-out;
+					background-color: rgb(27, 29, 30);
 				}
 				:focus {
 					background-color: rgba(228, 207, 228, 0.466);
 					border-radius: 50px;
-					border-bottom: 2px solid rgb(255, 0, 255);
+					border-bottom: 2px solid rgb(251, 251, 251);
 					transition: 0.2s ease-in;
 				}
 				[required] {
-					color: rgb(255, 0, 242);
+					color: #fff;
 					opacity: 1;
 					z-index: 100;
 				}
+
 			}
 			.checkbox {
 				display: flex;
 				position: relative;
+
 				.container {
 					transition: 0.1s ease;
 					.checkmark4 {
@@ -144,8 +151,9 @@ main {
 			background-color: rgba(255, 255, 255, 0);
 			img {
 				width: 42px;
-				background-color: rgb(255, 255, 255);
+				background-color: rgba(255, 255, 255, 0.945);
 				border-radius: 50%;
+				border: 1px solid #fff;
 			}
 			:hover {
 				transform: scale(1.1);
